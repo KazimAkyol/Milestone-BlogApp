@@ -52,6 +52,14 @@ export default function Dashboard() {
     navigate("/addComment");
   };
 
+  const handleDetail = () => {
+    navigate("/login");
+  };
+
+  const handleLike = () => {
+    navigate("/login");
+  };
+
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardHeader
@@ -79,7 +87,7 @@ export default function Dashboard() {
         disableSpacing
         sx={{ display: "flex", justifyContent: "space-between" }}
       >
-        <IconButton aria-label="add to favorites">
+        <IconButton aria-label="add to favorites" onClick={handleLike}>
           <FavoriteIcon />
         </IconButton>
         <IconButton
@@ -92,15 +100,12 @@ export default function Dashboard() {
         <IconButton color="primary" aria-label="view">
           <VisibilityIcon />
         </IconButton>
-        <IconButton sx={{ bgcolor: red[500], borderRadius: "10px" }}>
+        <IconButton
+          sx={{ bgcolor: red[500], borderRadius: "10px" }}
+          onClick={handleDetail}
+        >
           Read More
         </IconButton>
-        {/* <ExpandMore
-          expand={expanded}
-          onClick={handleExpandClick}
-          aria-expanded={expanded}
-          aria-label="show more"
-        ></ExpandMore> */}
       </CardActions>
     </Card>
   );

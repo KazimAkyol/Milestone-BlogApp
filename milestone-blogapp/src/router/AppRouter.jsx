@@ -6,6 +6,7 @@ import PrivateRouter from "./PrivateRouter";
 import CommentCard from "../components/blog/CommentCard";
 import About from "../pages/About";
 import Register from "../pages/Register";
+import Detail from "../pages/Detail";
 
 const AppRouter = () => {
   return (
@@ -20,6 +21,9 @@ const AppRouter = () => {
           <Route path="" element={<Login />} />
         </Route> */}
         <Route path="/addComment" element={<CommentCard />} />
+        <Route path="/blog" element={<PrivateRouter />}>
+          <Route path="" element={<Detail />} />
+        </Route>
       </Routes>
     </Router>
   );
