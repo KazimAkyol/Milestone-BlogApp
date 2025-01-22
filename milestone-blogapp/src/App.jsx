@@ -4,15 +4,30 @@ import AppRouter from "./router/AppRouter";
 import store, { persistor } from "./app/store";
 import { ToastContainer } from "react-toastify";
 import { PersistGate } from "redux-persist/integration/react";
+import { createTheme, ThemeProvider } from "@mui/material";
 
 function App() {
+  const theme = createTheme({
+    palette: {
+      primary: {
+        main: "#454F5B",
+      },
+      secondary: {
+        main: "#454F5B",
+        second: "#161C24",
+      },
+    },
+  });
+
   return (
-    <Provider store={store}>
-      <PersistGate loading={null} persistor={persistor}>
-        <AppRouter />
-        <ToastContainer />
-      </PersistGate>
-    </Provider>
+    <ThemeProvider theme={theme}>
+      <Provider store={store}>
+        <PersistGate loading={null} persistor={persistor}>
+          <AppRouter />
+          <ToastContainer />
+        </PersistGate>
+      </Provider>
+    </ThemeProvider>
   );
 }
 
