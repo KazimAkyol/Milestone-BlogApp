@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { Box, TextField, Button, Typography, Link } from "@mui/material";
+import { Box, TextField, Button, Typography } from "@mui/material";
 import useAuthCalls from "../hooks/useAuthCalls";
 
 const Register = () => {
@@ -16,7 +16,7 @@ const Register = () => {
   const handleRegister = () => {
     // Fake validation
     if (userName && firstName && lastName && email && password) {
-      dispatch(login());
+      dispatch(registerSuccess(data));
     }
   };
 
@@ -32,7 +32,7 @@ const Register = () => {
       }}
     >
       <Typography variant="h4" sx={{ mb: 3 }}>
-        SIGN IN
+        SIGN UP
       </Typography>
       <TextField
         label="UserName"

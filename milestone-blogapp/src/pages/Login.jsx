@@ -1,75 +1,63 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { Box, TextField, Button, Typography, Link } from "@mui/material";
+import Avatar from "@mui/material/Avatar";
+import Box from "@mui/material/Box";
+import Container from "@mui/material/Container";
+import Grid from "@mui/material/Grid";
+import Typography from "@mui/material/Typography";
+import LockIcon from "@mui/icons-material/Lock";
+import { Link } from "react-router-dom";
+import { Formik } from "formik";
+import LoginForm, { loginSchema } from "../components/auth/LoginForm";
 import useAuthCalls from "../hooks/useAuthCalls";
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const dispatch = useDispatch();
-
   const { login } = useAuthCalls();
 
-  const handleLogin = () => {
-    // Fake validation
-    if (email && password) {
-      dispatch(login());
-    }
-  };
-
   return (
-    <Box
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        height: "100vh",
-        backgroundColor: "#f5f5f5",
-      }}
-    >
-      <Typography variant="h4" sx={{ mb: 3 }}>
-        SIGN IN
-      </Typography>
-      <TextField
-        label="Email"
-        variant="outlined"
-        sx={{ mb: 2, width: "300px" }}
-        fullWidth
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <TextField
-        label="Password"
-        type="password"
-        variant="outlined"
-        sx={{ mb: 3, width: "300px" }}
-        fullWidth
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <Button
-        variant="contained"
-        color="primary"
-        sx={{ width: "300px" }}
-        fullWidth
-        onClick={handleLogin}
-      >
-        Login
-      </Button>
-      <Box
+    <Container maxWidth="lg">
+      <Grid
+        container
+        justifyContent="center"
+        direction="row-reverse"
         sx={{
-          textAlign: "center",
-          mt: 2,
-          color: "secondary.main",
-          cursor: "pointer",
+          height: "100vh",
+          p: 2,
         }}
       >
-        <Link to="/register">
-          Don't have an account? <span>Sign Up</span>
-        </Link>
-      </Box>
-    </Box>
+        <Grid item xs={12} sm={10} md={6}>
+          <Avatar
+            sx={{
+              backgroundColor: "secondary.main",
+              m: "auto",
+              width: 40,
+              height: 40,
+            }}
+          >
+            <LockIcon size="30" />
+          </Avatar>
+          <Typography variant="h4" align="center" mb={4} color="secondary.main">
+            SIGN IN
+          </Typography>
+
+          <Formik
+            initialValues={{
+              email: "",
+              password: "",
+            }}
+            validationSchema={loginSchema}
+            onSubmit={(values, actions) => {
+              login(values);
+              actions.resetForm();
+              actions.setSubmitting(false);
+            }}
+            component={(props) => <LoginForm {...props} />}
+          />
+
+          <Box sx={{ textAlign: "center", mt: 2, color: "secondary.main" }}>
+            <Link to="/register">Don't have an account? Sign Up</Link>
+          </Box>
+        </Grid>
+      </Grid>
+    </Container>
   );
 };
 
