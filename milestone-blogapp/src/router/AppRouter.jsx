@@ -4,6 +4,7 @@ import Dashboard from "../pages/Dashboard";
 import Login from "../pages/Login";
 import PrivateRouter from "./PrivateRouter";
 import CommentCard from "../components/blog/CommentCard";
+import About from "../pages/About";
 
 const AppRouter = () => {
   return (
@@ -11,9 +12,11 @@ const AppRouter = () => {
       <Navbar />
       <Routes>
         <Route path="/" element={<Dashboard />} />
-        <Route path="blog" element={<PrivateRouter />}>
+        <Route path="/about" element={<About />} />
+        <Route path="/login" element={<Login />} />
+        {/* <Route path="blog" element={<PrivateRouter />}>
           <Route path="" element={<Login />} />
-        </Route>
+        </Route> */}
         <Route path="/addComment" element={<CommentCard />} />
       </Routes>
     </Router>
