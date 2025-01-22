@@ -3,6 +3,7 @@ import Navbar from "../components/Navbar";
 import Dashboard from "../pages/Dashboard";
 import Login from "../pages/Login";
 import PrivateRouter from "./PrivateRouter";
+import CommentCard from "../components/blog/CommentCard";
 
 const AppRouter = () => {
   return (
@@ -13,6 +14,7 @@ const AppRouter = () => {
         <Route path="newblog" element={<PrivateRouter />}>
           <Route path="" element={<Login />} />
         </Route>
+        <Route path="/addComment" element={<CommentCard />} />
       </Routes>
     </Router>
   );
