@@ -8,12 +8,12 @@ import { object, string } from "yup"; //! bu şekilde de direk olarak metodları
 export const loginSchema = object({
   email: string()
     .email("Lütfen gecerli bir email adresi giriniz")
-    .required("Email zorunludur"),
-  password: string().required("Password zorunludur"),
+    .required("Email is required"),
+  password: string().required("Password is required"),
 });
 
 const LoginForm = ({ values, errors, touched, handleChange, handleBlur }) => {
-  const { loading } = useSelector((state) => state.auth); // store'da yaptığımız fetchStart işlemini kullanmış olduk.
+  const { loading } = useSelector((state) => state.auth);
 
   return (
     <Form>
@@ -29,9 +29,10 @@ const LoginForm = ({ values, errors, touched, handleChange, handleBlur }) => {
           onBlur={handleBlur}
           helperText={touched.email && errors.email}
           error={touched.email && Boolean(errors.email)}
+          autoFocus
         />
         <TextField
-          label="password"
+          label="Password"
           name="password"
           id="password"
           type="password"
