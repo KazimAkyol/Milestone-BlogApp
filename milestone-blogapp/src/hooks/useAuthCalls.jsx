@@ -14,12 +14,28 @@ const useAuthCalls = () => {
         userInfo
       );
       console.log("login icinde", data);
+      dispatch(loginSuccess(data));
     } catch (error) {
       dispatch(fetchFail());
     }
   };
 
-  return { login };
+  const register = async (userInfo) => {
+    dispatch(fetchStart());
+
+    try {
+      const { data } = await axios.post(
+        "https://30102.fullstack.clarusway.com/users",
+        userInfo
+      );
+      console.log("register icinde", data);
+      dispatch(registerSuccess(data));
+    } catch (error) {
+      dispatch(fetchFail());
+    }
+  };
+
+  return { login, register };
 };
 
 export default useAuthCalls;

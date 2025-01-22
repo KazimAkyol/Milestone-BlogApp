@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { Box, TextField, Button, Typography } from "@mui/material";
+import { Box, TextField, Button, Typography, Link } from "@mui/material";
 import useAuthCalls from "../hooks/useAuthCalls";
 
 const Login = () => {
@@ -29,12 +29,13 @@ const Login = () => {
       }}
     >
       <Typography variant="h4" sx={{ mb: 3 }}>
-        Login
+        SIGN IN
       </Typography>
       <TextField
         label="Email"
         variant="outlined"
         sx={{ mb: 2, width: "300px" }}
+        fullWidth
         value={email}
         onChange={(e) => setEmail(e.target.value)}
       />
@@ -43,6 +44,7 @@ const Login = () => {
         type="password"
         variant="outlined"
         sx={{ mb: 3, width: "300px" }}
+        fullWidth
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       />
@@ -50,10 +52,23 @@ const Login = () => {
         variant="contained"
         color="primary"
         sx={{ width: "300px" }}
+        fullWidth
         onClick={handleLogin}
       >
         Login
       </Button>
+      <Box
+        sx={{
+          textAlign: "center",
+          mt: 2,
+          color: "secondary.main",
+          cursor: "pointer",
+        }}
+      >
+        <Link to="/register">
+          Don't have an account? <span>Sign Up</span>
+        </Link>
+      </Box>
     </Box>
   );
 };
