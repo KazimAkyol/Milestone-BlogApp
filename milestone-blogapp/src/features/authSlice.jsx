@@ -8,6 +8,7 @@ const authSlice = createSlice({
     error: false,
     currentUser: null,
     token: null,
+    isAdmin: false,
   },
 
   reducers: {
@@ -19,9 +20,23 @@ const authSlice = createSlice({
       state.loading = false;
       state.error = true;
     },
+    loginSuccess: (state, { payload }) => {
+      state.currentUser = payload?.user?.username;
+      state.token = payload?.token;
+      state.loading = false;
+      state.isAdmin = payload?.user?.isAdmin;
+    },
+    registerSuccess: (state, { payload }) => {
+      console.log("Register Payload:", payload);
+      state.currentUser = payload?.data?.username ?? null;
+      state.token = payload?.token ?? null;
+      state.loading = false;
+      state.isAdmin = payload?.data?.isAdmin ?? false;
+    },
   },
 });
 
-export const { fetchStart, fetchFail } = authSlice.actions;
+export const { fetchStart, fetchFail, loginSuccess, registerSuccess } =
+  authSlice.actions;
 
 export default authSlice.reducer;
