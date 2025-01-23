@@ -31,6 +31,7 @@ const Register = () => {
       .required("Email is required"),
     // image: Yup.string().required("Image is required"),
     // bio: Yup.string().required("Bio is required"),
+    city: Yup.string().required("City is required"),
     password: Yup.string()
       .min(8, "Password 8 karakterden fazla olmalidir")
       .matches(/[a-z]/, "Password kucuk harf icermelidir")
@@ -78,6 +79,7 @@ const Register = () => {
               lastName: "",
               email: "",
               image: "",
+              city: "",
               bio: "",
               password: "",
             }}

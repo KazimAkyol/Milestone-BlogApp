@@ -83,6 +83,20 @@ const RegisterForm = ({
       />
 
       <TextField
+        name="city"
+        value={values.city}
+        onChange={handleChange}
+        label="City"
+        onBlur={handleBlur}
+        error={touched.city && errors.city}
+        helperText={touched.city && errors.city}
+        variant="outlined"
+        fullWidth
+        type="text"
+        margin="normal"
+      />
+
+      <TextField
         name="bio"
         value={values.bio}
         onChange={handleChange}

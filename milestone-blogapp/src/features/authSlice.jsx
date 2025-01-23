@@ -28,8 +28,8 @@ const authSlice = createSlice({
     },
     registerSuccess: (state, { payload }) => {
       console.log("Register Payload:", payload);
-      state.currentUser = payload?.data?.username ?? null;
-      state.token = payload?.token ?? null;
+      state.currentUser = JSON.parse(payload?.data?.username ?? "null");
+      state.token = JSON.parse(payload?.token ?? "null");
       state.loading = false;
       state.isAdmin = payload?.data?.isAdmin ?? false;
     },
