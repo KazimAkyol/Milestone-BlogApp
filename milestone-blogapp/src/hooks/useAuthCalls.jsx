@@ -11,7 +11,10 @@ const useAuthCalls = () => {
     dispatch(fetchStart());
 
     try {
-      const { data } = await axiosWithoutHeader(`auth/login`, userInfo);
+      const { data } = await axios.post(
+        "https://30102.fullstack.clarusway.com/auth/login",
+        userInfo
+      );
       console.log("login icinde", data);
       dispatch(loginSuccess(data));
     } catch (error) {
