@@ -8,7 +8,6 @@ const authSlice = createSlice({
     error: false,
     currentUser: null,
     token: null,
-    isAdmin: false,
   },
 
   reducers: {
@@ -16,8 +15,11 @@ const authSlice = createSlice({
       state.loading = true;
       state.error = false;
     },
-    registerSuccess: (state, action) => {
-      console.log(action);
+    registerSuccess: (state, { payload }) => {
+      console.log(payload);
+      state.currentUser = payload.data.username;
+      state.token = payload.token;
+      state.loading = true;
     },
     loginSuccess: (state, { payload }) => {
       state.currentUser = payload?.user?.username;

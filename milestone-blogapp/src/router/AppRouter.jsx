@@ -7,6 +7,7 @@ import CommentCard from "../components/blog/CommentCard";
 import About from "../pages/About";
 import Register from "../pages/Register";
 import Detail from "../pages/Detail";
+import NewBlog from "../pages/NewBlog";
 
 const AppRouter = () => {
   return (
@@ -21,8 +22,9 @@ const AppRouter = () => {
           <Route path="" element={<Login />} />
         </Route> */}
         <Route path="/addComment" element={<CommentCard />} />
-        <Route path="/blog" element={<PrivateRouter />}>
-          <Route path="" element={<Detail />} />
+        <Route path="blog" element={<PrivateRouter />}>
+          <Route path="" element={<NewBlog />} />
+          <Route path="detail" element={<Detail />} />
         </Route>
       </Routes>
     </Router>

@@ -2,9 +2,11 @@ import { useDispatch } from "react-redux";
 import { fetchFail, fetchStart } from "../features/authSlice";
 import axios from "axios";
 import useAxios from "./useAxios";
+import { useNavigate } from "react-router-dom";
 
 const useAuthCalls = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { axiosWithToken, axiosWithoutHeader } = useAxios();
 
   const register = async (userInfo) => {
@@ -17,6 +19,7 @@ const useAuthCalls = () => {
       );
       console.log("register icinde", data);
       dispatch(registerSuccess(data));
+      navigate("/blog");
     } catch (error) {
       dispatch(fetchFail());
     }
