@@ -7,6 +7,21 @@ const useAuthCalls = () => {
   const dispatch = useDispatch();
   const { axiosWithToken, axiosWithoutHeader } = useAxios();
 
+  const register = async (userInfo) => {
+    dispatch(fetchStart());
+
+    try {
+      const { data } = await axios.post(
+        "https://30102.fullstack.clarusway.com/users",
+        userInfo
+      );
+      console.log("register icinde", data);
+      dispatch(registerSuccess(data));
+    } catch (error) {
+      dispatch(fetchFail());
+    }
+  };
+
   const login = async (userInfo) => {
     dispatch(fetchStart());
 
@@ -22,19 +37,7 @@ const useAuthCalls = () => {
     }
   };
 
-  const register = async (userInfo) => {
-    dispatch(fetchStart());
-
-    try {
-      const { data } = await axiosWithoutHeader(`users`, userInfo);
-      console.log("register icinde", data);
-      dispatch(registerSuccess(data));
-    } catch (error) {
-      dispatch(fetchFail());
-    }
-  };
-
-  return { login, register };
+  return { register, login };
 };
 
 export default useAuthCalls;
