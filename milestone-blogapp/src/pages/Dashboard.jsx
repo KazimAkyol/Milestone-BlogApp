@@ -62,6 +62,11 @@ export default function Dashboard() {
 
   return (
     <Card sx={{ maxWidth: 345 }}>
+      {/* <Grid container sx={{ marginLeft: "1rem" }}>
+        {blogs.map((blog, index) => (
+          <Grid key={index} size={{ xs: 2, sm: 4, md: 4 }}></Grid>
+        ))}
+      </Grid> */}
       <CardHeader
         avatar={
           <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
